@@ -116,6 +116,8 @@ dependencies {
     // Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.6.1")
 
+
+    //Firebase analytics, crashlytics and performance
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
