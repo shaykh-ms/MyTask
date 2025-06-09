@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mytodolist.R
 import com.example.mytodolist.domain.model.Task
+import com.example.mytodolist.presentation.task_listing.components.EmptyScreen
 import com.example.mytodolist.presentation.task_listing.components.TodoItem2
 import com.example.mytodolist.presentation.task_listing.sheet.BottomSheetScreen
 import com.example.mytodolist.util.analytics.AnalyticsEvent
@@ -67,6 +68,7 @@ fun TaskListingScreen(
     val scope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState()
     var isSheetOpen by rememberSaveable { mutableStateOf(false) }
+    var isEmptyScreenVisible by rememberSaveable { mutableStateOf(false) }
     val listState = rememberLazyListState()
 
     LaunchedEffect(Unit) {
@@ -75,6 +77,11 @@ fun TaskListingScreen(
                 TaskUiEvent.ShowSheet -> {
                     isSheetOpen = true
                     sheetState.show()
+                }
+
+                is TaskUiEvent.ShowEmptyView -> {
+                    isEmptyScreenVisible = it.isShow
+
                 }
             }
         }
@@ -86,7 +93,7 @@ fun TaskListingScreen(
                 onClick = {
                     onEvent(TaskEvent.AddTask)
                 },
-                containerColor = colorResource(R.color.blue_selected)
+                containerColor = colorResource(R.color.blue_icon_dark)
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -96,12 +103,25 @@ fun TaskListingScreen(
             }
         }
     ) {
+
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = colorResource(R.color.white))
+
+        ) {
+
+
+
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .safeContentPadding()
                 .padding(16.dp)
                 .padding(bottom = 32.dp)
+                .background(color = colorResource(R.color.white))
         ) {
             Row(
                 modifier = Modifier
@@ -115,11 +135,17 @@ fun TaskListingScreen(
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
-                        color = colorResource(R.color.blue_selected)
+                        color = colorResource(R.color.blue_icon_dark)
                     )
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
+
+            if (isEmptyScreenVisible) {
+                //ui for empty screen
+                EmptyScreen(modifier = Modifier)
+            }
+
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -175,6 +201,7 @@ fun TaskListingScreen(
             }
         }
     }
+}
     if (isSheetOpen) {
         ModalBottomSheet(
             modifier = Modifier

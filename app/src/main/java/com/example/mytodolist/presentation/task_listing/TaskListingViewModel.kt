@@ -9,8 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.mytodolist.data.mapper.toTaskEntity
 import com.example.mytodolist.domain.repository.TaskRepository
 import com.example.mytodolist.util.Resource
-import com.example.mytodolist.util.analytics.AnalyticsEvent
-import com.example.mytodolist.util.analytics.AnalyticsLogger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -49,10 +47,13 @@ class TaskListingViewModel @Inject constructor(
 
                     is Resource.Success -> {
                         result.data?.let { listings ->
+
                             state = state.copy(
                                 isLoading = false,
-                                tasks = listings.toMutableStateList()
+                                isReady = true,
+                                tasks = listings.toMutableStateList(),
                             )
+                            onUiEvent(TaskUiEvent.ShowEmptyView(isShow = listings.isEmpty()))
                         }
                     }
                 }

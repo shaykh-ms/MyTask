@@ -122,4 +122,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-perf")
+
+    //SplashScreen
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }
