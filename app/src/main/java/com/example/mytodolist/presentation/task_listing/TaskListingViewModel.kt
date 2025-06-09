@@ -12,8 +12,11 @@ import com.example.mytodolist.util.Resource
 import com.example.mytodolist.util.analytics.AnalyticsEvent
 import com.example.mytodolist.util.analytics.AnalyticsLogger
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,8 +25,24 @@ class TaskListingViewModel @Inject constructor(
     private val todoRepository: TaskRepository
 ) : ViewModel() {
 
+    private val _isReady = MutableStateFlow(false)
+    val isReady = _isReady.asStateFlow()
+
+
+
 
     var state by mutableStateOf(TaskState())
+
+    init {
+        viewModelScope.launch {
+            delay(1000L)
+           // _isReady.value = true
+
+            state = state.copy(
+                isReady = true
+            )
+        }
+    }
 
     private val _uiEvent = MutableSharedFlow<TaskUiEvent>()
     val uiEvent = _uiEvent.asSharedFlow()

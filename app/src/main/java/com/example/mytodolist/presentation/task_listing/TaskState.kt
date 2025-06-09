@@ -9,5 +9,6 @@ data class TaskState(
     val clickedTask: Task? = null,
     val isLoading: Boolean = false,
     val query: String = "",
-    val error: String? = null
+    val error: String? = null,
+    val isReady: Boolean = false
 )
