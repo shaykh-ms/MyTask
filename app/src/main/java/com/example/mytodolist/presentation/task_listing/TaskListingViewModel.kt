@@ -68,10 +68,12 @@ class TaskListingViewModel @Inject constructor(
 
                     is Resource.Success -> {
                         result.data?.let { listings ->
+
                             state = state.copy(
                                 isLoading = false,
-                                tasks = listings.toMutableStateList()
+                                tasks = listings.toMutableStateList(),
                             )
+                            onUiEvent(TaskUiEvent.ShowEmptyView(isShow = listings.isEmpty()))
                         }
                     }
                 }

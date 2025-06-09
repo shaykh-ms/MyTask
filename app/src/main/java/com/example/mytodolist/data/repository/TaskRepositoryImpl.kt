@@ -40,10 +40,10 @@ class TaskRepositoryImpl @Inject constructor(
                 if (!isDbEmpty) {
                     writeLog("getTodoListing", "data from cache")
                     emit(Resource.Loading(false))
-                    return@collect
+                   // return@collect
                 }
 
-                val remoteListings = try {
+             /*   val remoteListings = try {
                     mealApi.getTodoListings()
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -66,7 +66,7 @@ class TaskRepositoryImpl @Inject constructor(
                         emit(Resource.Success(lists.map { it.toTask() }))
                     }
                     emit(Resource.Loading(false))
-                }
+                }*/
             }
         }
     }

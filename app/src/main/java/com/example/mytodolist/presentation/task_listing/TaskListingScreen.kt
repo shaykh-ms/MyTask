@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mytodolist.R
 import com.example.mytodolist.domain.model.Task
+import com.example.mytodolist.presentation.task_listing.components.EmptyScreen
 import com.example.mytodolist.presentation.task_listing.components.TodoItem2
 import com.example.mytodolist.presentation.task_listing.sheet.BottomSheetScreen
 import com.example.mytodolist.util.analytics.AnalyticsEvent
@@ -67,6 +68,7 @@ fun TaskListingScreen(
     val scope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState()
     var isSheetOpen by rememberSaveable { mutableStateOf(false) }
+    var isEmptyScreenVisible by rememberSaveable { mutableStateOf(false) }
     val listState = rememberLazyListState()
 
     LaunchedEffect(Unit) {
@@ -75,6 +77,11 @@ fun TaskListingScreen(
                 TaskUiEvent.ShowSheet -> {
                     isSheetOpen = true
                     sheetState.show()
+                }
+
+                is TaskUiEvent.ShowEmptyView -> {
+                    isEmptyScreenVisible = it.isShow
+
                 }
             }
         }
@@ -120,6 +127,12 @@ fun TaskListingScreen(
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
+
+            if(isEmptyScreenVisible){
+                //ui for empty screen
+                EmptyScreen(modifier = Modifier)
+            }
+
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize(),
