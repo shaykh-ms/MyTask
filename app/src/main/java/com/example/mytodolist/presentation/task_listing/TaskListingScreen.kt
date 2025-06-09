@@ -93,7 +93,7 @@ fun TaskListingScreen(
                 onClick = {
                     onEvent(TaskEvent.AddTask)
                 },
-                containerColor = colorResource(R.color.blue_selected)
+                containerColor = colorResource(R.color.blue_icon_dark)
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -103,12 +103,25 @@ fun TaskListingScreen(
             }
         }
     ) {
+
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = colorResource(R.color.white))
+
+        ) {
+
+
+
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .safeContentPadding()
                 .padding(16.dp)
                 .padding(bottom = 32.dp)
+                .background(color = colorResource(R.color.white))
         ) {
             Row(
                 modifier = Modifier
@@ -122,13 +135,13 @@ fun TaskListingScreen(
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
-                        color = colorResource(R.color.blue_selected)
+                        color = colorResource(R.color.blue_icon_dark)
                     )
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
 
-            if(isEmptyScreenVisible){
+            if (isEmptyScreenVisible) {
                 //ui for empty screen
                 EmptyScreen(modifier = Modifier)
             }
@@ -188,6 +201,7 @@ fun TaskListingScreen(
             }
         }
     }
+}
     if (isSheetOpen) {
         ModalBottomSheet(
             modifier = Modifier
