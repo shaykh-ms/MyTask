@@ -12,19 +12,13 @@ This app is designed to manage and track tasks efficiently using Jetpack Compose
 
 ## Screenshots/Video: 
 
-**Task Listing Screen**
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/user-attachments/assets/87df19cf-e450-4bc9-a4e4-81f63a3caada" width="300" />
+  <img src="https://github.com/user-attachments/assets/b26034a4-ec9a-4a82-905b-58c533dcbe45" width="300" />
+  <img src="https://github.com/user-attachments/assets/216451b0-be25-46a9-8f06-c25510f1c0a6" width="300" />
+</div>
 
-![1 task_listing](https://github.com/user-attachments/assets/87df19cf-e450-4bc9-a4e4-81f63a3caada)
+ https://github.com/user-attachments/assets/3d13fde0-7ed7-43ac-a210-6464f9f20bd0
 
-**Add New Task Screen**
 
-![2 add_new_task](https://github.com/user-attachments/assets/b26034a4-ec9a-4a82-905b-58c533dcbe45)
-
-**Edit Task Screen**
-
-![3 edit_task](https://github.com/user-attachments/assets/216451b0-be25-46a9-8f06-c25510f1c0a6)
-
-**Video Demo**
-
-https://github.com/user-attachments/assets/3d13fde0-7ed7-43ac-a210-6464f9f20bd0
 
